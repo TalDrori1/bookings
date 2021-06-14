@@ -1,0 +1,56 @@
+{{template "base" .}}
+
+{{define "content"}}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="/static/images/hokages-suite.png" class="img-fluid img-thumbnail mx-auto d-block room-image">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Hokage's suite</h1>
+            <p>
+              You just finished a mission and you need a place to rest from the chase after the Atzuki. We feel you. Naruto Bed and Breakfast is the place for you!
+              You just finished a mission and you need a place to rest from the chase after the Atzuki. We feel you. Naruto Bed and Breakfast is the place for you!
+              You just finished a mission and you need a place to rest from the chase after the Atzuki. We feel you. Naruto Bed and Breakfast is the place for you!
+              You just finished a mission and you need a place to rest from the chase after the Atzuki. We feel you. Naruto Bed and Breakfast is the place for you!
+              You just finished a mission and you need a place to rest from the chase after the Atzuki. We feel you. Naruto Bed and Breakfast is the place for you!
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <a id="check-availability-button" href="#!" class="btn btn-success">Check Availability</a>
+        </div>
+    </div>	
+</div>
+
+{{end}}
+
+
+{{define "js"}}
+<script>
+		document.getElementById("check-availability-button").addEventListener("click", function () {
+			let html = `
+			<form id="check-availability-form" action="" method="POST" novalidate class="needs-validation">
+				<div class="row">
+					<div class="col">
+						<div class="row" id="reservation-dates-modal">
+							<div class="col">
+								<input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival"></input>
+							</div>
+							<div class="col">
+								<input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure">
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			`;
+			attention.custom({msg: html, title: "Choose your dates"});
+		})
+
+</script>
+
+{{end}}

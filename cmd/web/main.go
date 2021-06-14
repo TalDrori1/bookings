@@ -1,15 +1,17 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/taldrori/bookings/pkg/config"
-	"github.com/taldrori/bookings/pkg/handlers"
-	"github.com/taldrori/bookings/pkg/render"
+	"github.com/taldrori/bookings/internal/config"
+	"github.com/taldrori/bookings/internal/handlers"
+	"github.com/taldrori/bookings/internal/models"
+	"github.com/taldrori/bookings/internal/render"
 )
 
 const portNumber = ":8080"
@@ -18,6 +20,7 @@ var app config.Appconfig
 var session *scs.SessionManager
 
 func main() {
+	gob.Register(models.Reservation{})
 	//change to true in production
 	app.InProduction = false
 

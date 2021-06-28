@@ -24,10 +24,21 @@ import (
 var app config.Appconfig
 var session *scs.SessionManager
 var pathToTemplates = "./../../templates"
-var functions = template.FuncMap{}
+var functions = template.FuncMap{
+	"humanDate":  render.HumanDate,
+	"formatDate": render.FormatDate,
+	"iterate":    render.Iterate,
+	"add":        render.Add,
+}
 
 func TestMain(m *testing.M) {
 	gob.Register(models.Reservation{})
+	gob.Register(models.User{})
+	gob.Register(models.RoomRestriction{})
+	gob.Register(models.Room{})
+	gob.Register(models.Restriction{})
+	gob.Register(map[string]int{})
+
 	//change to true in production
 	app.InProduction = false
 
@@ -66,10 +77,10 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
-func listenForMail(){
+func listenForMail() {
 	go func() {
 		for {
-			_ = <- app.MailChan
+			_ = <-app.MailChan
 		}
 	}()
 }
